@@ -10,6 +10,7 @@ using System.Text;
 using System;
 //using LitJson;
 using System.Linq;
+using System.Diagnostics;
 
 #if !UNITY_FLASH && !UNITY_WP8 && !UNITY_METRO
 using System.Security.Cryptography;
@@ -140,7 +141,7 @@ public class GA_Submit
 					item.Parameters.Add(GA_ServerFieldTypes.Fields[GA_ServerFieldTypes.FieldType.SessionID], GA.API.GenericInfo.SessionID);
 
 				if (!item.Parameters.ContainsKey(GA_ServerFieldTypes.Fields[GA_ServerFieldTypes.FieldType.Build]))
-					item.Parameters.Add(GA_ServerFieldTypes.Fields[GA_ServerFieldTypes.FieldType.Build], GA.SettingsGA.Build);
+                    item.Parameters.Add(GA_ServerFieldTypes.Fields[GA_ServerFieldTypes.FieldType.Build], new TrackedBundleVersion().current.version);//.SettingsGA.Build);
 				
 				categories[item.Type].Add(item);
 			}
@@ -156,7 +157,7 @@ public class GA_Submit
 					item.Parameters.Add(GA_ServerFieldTypes.Fields[GA_ServerFieldTypes.FieldType.SessionID], GA.API.GenericInfo.SessionID);
 				
 				if (!item.Parameters.ContainsKey(GA_ServerFieldTypes.Fields[GA_ServerFieldTypes.FieldType.Build]))
-					item.Parameters.Add(GA_ServerFieldTypes.Fields[GA_ServerFieldTypes.FieldType.Build], GA.SettingsGA.Build);
+                    item.Parameters.Add(GA_ServerFieldTypes.Fields[GA_ServerFieldTypes.FieldType.Build], new TrackedBundleVersion().current.version);
 				
 				categories.Add(item.Type, new List<Item> { item });
 			}
@@ -241,8 +242,10 @@ public class GA_Submit
 			}
 			
 			//Make a JSON array string out of the list of parameter collections
-			string json = DictToJson(itemsParameters);
-			
+//			string json = DictToJson(itemsParameters);
+
+            string json = MiniJSON.Json.Serialize(itemsParameters);
+
 			/* If we do not have access to a network connection (or we are roaming (mobile devices) and GA_static_api.Settings.ALLOWROAMING is false),
 			 * and data is set to be archived, then archive the data and pretend the message was sent successfully */
 			if  (GA.SettingsGA.ArchiveData && !gaTracking && !GA.SettingsGA.InternetConnectivity)
@@ -316,7 +319,7 @@ public class GA_Submit
 			
 			try
 			{
-				if (www.error != null && !CheckServerReply(www))
+				if (!string.IsNullOrEmpty(www.error) && !CheckServerReply(www))
 				{
 					throw new Exception(www.error);
 				}
@@ -554,7 +557,7 @@ public class GA_Submit
 	{
 		try
 		{
-			if (www.error != null)
+			if (!string.IsNullOrEmpty(www.error))
 			{
 				string errStart = www.error.Substring(0, 3);
 				if (errStart.Equals("201") || errStart.Equals("202") || errStart.Equals("203") || errStart.Equals("204") || errStart.Equals("205") || errStart.Equals("206"))

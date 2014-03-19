@@ -1,5 +1,5 @@
-//#define IOS_ID
-//#define ANDROID_ID
+#define IOS_ID
+#define ANDROID_ID
 
 using UnityEngine;
 using System.Collections;
@@ -190,7 +190,7 @@ public class GA_Settings : ScriptableObject
 				{
 					InternetConnectivity = true;
 				}
-				else if (www.error != null)
+				else if (!string.IsNullOrEmpty(www.error))
 				{
 					InternetConnectivity = false;
 				}
@@ -401,6 +401,13 @@ public class GA_Settings : ScriptableObject
 		}
 	}
 	
+    public void SetCustomSessionID(string customID = null)
+    {
+        if (customID != string.Empty)
+        {
+            GA.API.GenericInfo.SetSessionUUID(customID);
+        }
+    }
 		
 	/// <summary>
 	/// Sets a custom area string. An area is often just a level, but you can set it to whatever makes sense for your game. F.x. in a big open world game you will probably need custom areas to identify regions etc.

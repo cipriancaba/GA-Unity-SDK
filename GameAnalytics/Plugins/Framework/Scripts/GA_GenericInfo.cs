@@ -201,9 +201,9 @@ public  class GA_GenericInfo
 #endif
 	}
 	
-	public void SetSessionUUID()
+	public void SetSessionUUID(string customSession = null)
 	{
-		_sessionID = GetSessionUUID();
+		_sessionID = customSession ?? GetSessionUUID();
 	}
 	
 	/// <summary>
