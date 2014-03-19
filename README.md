@@ -4,6 +4,31 @@ NOTE: To use this GIT repository in your Unity game please add the contents dire
 
 ### Recent Changes:
 
+##### v.0.6.1:
+
+- Fixed an error when checking for updates while the update server is down.
+- Fixed a build error caused by AdBannerView on non-iOS platforms.
+- You will now be warned about missing Game key or API key when updating heatmaps.
+- Some minor updates to the way new versions are handled.
+
+##### v.0.6.0:
+
+- New Ad Support feature for mobile games (see the Ad Support tab under GA_Settings). Supports iAd and Chartboost ad networks.
+- Fixed some issues with building for Unity Metro (in the newest version of Unity).
+- You can now call GA.SettingsGA.SetKeys(gamekey, secretkey) to change your keys dynamically.
+- Minor bug fixes and improvements.
+
+##### v.0.5.9:
+
+- Added a new debug option, Debug Add Event, which will log a debug message every time an event is added. This option is disabled by default, but can be enabled from the Debug tab in GA_Settings.
+- Fixed a missing link in the iOS_Readme file.
+
+##### v.0.5.8:
+
+- Apple has started rejecting some apps using IDFA (identifier for advertisers) which do not show ads. We have added a temporary fix to this problem. For more information please see the iOS_Readme.txt file in the GameAnalytics > Plugins > iOS folder.
+- Greatly improved the Android setup process (GameAnalytics now works out-of-the-box with Android, requiring no additional setup).
+- Minor bug fixes and improvements.
+
 ##### v.0.5.7:
 
 - Added support for the Facebook SDK plugin (see GA documentation for setup information).

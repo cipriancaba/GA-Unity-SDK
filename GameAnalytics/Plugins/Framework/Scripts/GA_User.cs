@@ -6,10 +6,6 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-#if UNITY_METRO && !UNITY_EDITOR
-using GA_Compatibility.Collections;
-#endif
-
 public class GA_User
 {
 	public enum Gender { Unknown, Male, Female }
@@ -141,11 +137,11 @@ public class GA_User
 			parameters.Add(GA_ServerFieldTypes.Fields[GA_ServerFieldTypes.FieldType.InstallKeyword], installKeyword);
 		}
 
-        if (facebookID != null)
-        {
-            parameters.Add(GA_ServerFieldTypes.Fields[GA_ServerFieldTypes.FieldType.FacebookID], facebookID);
-        }
-		
+		if (facebookID != null)
+		{
+			parameters.Add(GA_ServerFieldTypes.Fields[GA_ServerFieldTypes.FieldType.FacebookID], facebookID);
+		}
+
 		if (parameters.Count == 0)
 		{
 			GA.LogWarning("GA: No data to send with NewUser event; event will not be added to queue");
@@ -153,6 +149,35 @@ public class GA_User
 		}
 
 		GA_Queue.AddItem(parameters, GA_Submit.CategoryType.GA_User, false);
+		
+		#if UNITY_EDITOR
+		
+		if (GA.SettingsGA.DebugAddEvent)
+		{
+			string options = "";
+			if (gender == Gender.Male)
+			{
+				options = ", Gender: Male";
+			}
+			else if (gender == Gender.Female)
+			{
+				options = ", Gender: Female";
+			}
+			
+			if (birth_year.HasValue && birth_year.Value != 0)
+			{
+				options += ", Birth Year: " + birth_year;
+			}
+			
+			if (friend_count.HasValue)
+			{
+				options += ", Friend Count: " + friend_count;
+			}
+			
+			GA.Log("GA User Event added" + options, true);
+		}
+		
+		#endif
 	}
 	
 	#endregion
