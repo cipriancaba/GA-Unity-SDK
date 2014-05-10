@@ -46,9 +46,9 @@ public class GA_FacebookSDK : MonoBehaviour
 				}
 
 				if (_friendCount > -1)
-					GA.API.User.NewUser(gender, null, _friendCount, null, null, null, null, null, null, null, null, null, null, null, null, null, _userID);
+					GA.API.User.NewUser(gender, null, _friendCount, null, null, null, null, null, null, null, null, null, null, null, null, _userID);
 				else
-					GA.API.User.NewUser(gender, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, _userID);
+					GA.API.User.NewUser(gender, null, null, null, null, null, null, null, null, null, null, null, null, null, null, _userID);
 			}
 		}
 	}
