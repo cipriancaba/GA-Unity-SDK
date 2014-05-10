@@ -10,6 +10,7 @@ using System.Text;
 using System;
 //using LitJson;
 using System.Linq;
+using System.Diagnostics;
 
 #if !UNITY_FLASH && !UNITY_WP8 && !UNITY_METRO
 using System.Security.Cryptography;
@@ -146,7 +147,7 @@ public class GA_Submit
 					item.Parameters.Add(GA_ServerFieldTypes.Fields[GA_ServerFieldTypes.FieldType.SessionID], GA.API.GenericInfo.SessionID);
 
 				if (!item.Parameters.ContainsKey(GA_ServerFieldTypes.Fields[GA_ServerFieldTypes.FieldType.Build]))
-					item.Parameters.Add(GA_ServerFieldTypes.Fields[GA_ServerFieldTypes.FieldType.Build], GA.SettingsGA.Build);
+					item.Parameters.Add(GA_ServerFieldTypes.Fields[GA_ServerFieldTypes.FieldType.Build], new TrackedBundleVersion().current.version);
 				
 				categories[item.Type].Add(item);
 			}
@@ -162,7 +163,7 @@ public class GA_Submit
 					item.Parameters.Add(GA_ServerFieldTypes.Fields[GA_ServerFieldTypes.FieldType.SessionID], GA.API.GenericInfo.SessionID);
 				
 				if (!item.Parameters.ContainsKey(GA_ServerFieldTypes.Fields[GA_ServerFieldTypes.FieldType.Build]))
-					item.Parameters.Add(GA_ServerFieldTypes.Fields[GA_ServerFieldTypes.FieldType.Build], GA.SettingsGA.Build);
+					item.Parameters.Add(GA_ServerFieldTypes.Fields[GA_ServerFieldTypes.FieldType.Build], new TrackedBundleVersion().current.version);
 				
 				categories.Add(item.Type, new List<Item> { item });
 			}
@@ -246,7 +247,8 @@ public class GA_Submit
 			}
 			
 			//Make a JSON array string out of the list of parameter collections
-			string json = DictToJson(itemsParameters);
+			//string json = DictToJson(itemsParameters);
+			string json = MiniJSON.Json.Serialize(itemsParameters);
 			
 			/* If we do not have access to a network connection (or we are roaming (mobile devices) and GA_static_api.Settings.ALLOWROAMING is false),
 			 * and data is set to be archived, then archive the data and pretend the message was sent successfully */
