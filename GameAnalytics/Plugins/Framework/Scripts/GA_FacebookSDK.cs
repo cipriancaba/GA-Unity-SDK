@@ -1,4 +1,4 @@
-#if false
+#if true 
 
 using UnityEngine;
 using System;
@@ -125,8 +125,6 @@ public class GA_FacebookSDK : MonoBehaviour
 }
 
 #else
-
-using UnityEngine;
 
 public class GA_FacebookSDK : MonoBehaviour
 {
