@@ -87,9 +87,9 @@ public class GA_SystemTracker : MonoBehaviour
 		GA.API.Debugging.SubmitErrorSystemInfo = SubmitErrorSystemInfo;
 		GA.API.Debugging.MaxErrorCount = MaxErrorCount;
 		
-		if(GA.API.Debugging.SubmitErrors) //Warning this registerLogCallback is slow because it saves the stacktraces
-			Application.RegisterLogCallback(GA.API.Debugging.HandleLog);
-
+		//if(GA.API.Debugging.SubmitErrors) //Warning this registerLogCallback is slow because it saves the stacktraces
+		//	Application.RegisterLogCallback(GA.API.Debugging.HandleLog);
+		
 		// Add system specs to the submit queue
 		if (IncludeSystemSpecs)
 		{
