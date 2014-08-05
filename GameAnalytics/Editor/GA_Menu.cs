@@ -54,76 +54,76 @@ public class GA_Menu : MonoBehaviour
 		//GA_Tracking.SendEvent("Added:GA_HeatMap");
 	}
 	
-	[MenuItem ("Window/GameAnalytics/Add GA_Tracker to Object", false, 202)]
-	static void AddGATracker ()
-	{
-		if (Selection.activeGameObject != null) {
-			if (Selection.activeGameObject.GetComponent<GA_Tracker> () == null) {
-				Selection.activeGameObject.AddComponent<GA_Tracker> ();
+	//[MenuItem ("Window/GameAnalytics/Add GA_Tracker to Object", false, 202)]
+//	static void AddGATracker ()
+//	{
+//		if (Selection.activeGameObject != null) {
+//			if (Selection.activeGameObject.GetComponent<GA_Tracker> () == null) {
+//				Selection.activeGameObject.AddComponent<GA_Tracker> ();//
 
-				//GA_Tracking.SendEvent("Added:GA_Tracker");
-			} else {
-				GA.LogWarning ("That object already contains a GA_Tracker component.");
-			}
-		} else {
-			GA.LogWarning ("You must select the gameobject you want to add the GA_Tracker component to.");
-		}
-	}
-	
-	[MenuItem ("Window/GameAnalytics/Open GA_Status Window", false, 300)]
-	static void OpenGAStatus ()
-	{
-		GA_Status status = ScriptableObject.CreateInstance<GA_Status> ();
-		status.Show ();
-	}
-	
-	[MenuItem ("Window/GameAnalytics/PlayMaker/Toggle Scripts", false, 400)]
-	static void TogglePlayMaker ()
-	{
-		bool enabled = false;
-		bool fail = false;
-		
-		string searchText = "#if false";
-		string replaceText = "#if true";
-		
-		string[] _files = new string[] {
-			"/GameAnalytics/Plugins/Playmaker/SendBusinessEvent.cs",
-			"/GameAnalytics/Plugins/Playmaker/SendDesignEvent.cs",
-			"/GameAnalytics/Plugins/Playmaker/SendErrorEvent.cs",
-			"/GameAnalytics/Plugins/Playmaker/SendUserEvent.cs",
-			"/GameAnalytics/Plugins/Playmaker/Editor/SendUserEventActionEditor.cs",
-			"/GameAnalytics/Plugins/Playmaker/QueueEndSubmit.cs",
-			"/GameAnalytics/Plugins/Playmaker/QueueForceSubmit.cs",
-			"/GameAnalytics/Plugins/Playmaker/ConvertFloatToLowestCurrencyUnit.cs",
-			"/GameAnalytics/Plugins/Playmaker/SetCustomUserID.cs",
-			"/GameAnalytics/Plugins/Playmaker/SetCustomArea.cs"
-		};
-		
-		foreach(string _file in _files)
-		{
-			try {
-				enabled = ReplaceInFile (Application.dataPath + _file, searchText, replaceText);
-			} catch {
-				Debug.Log("Failed to toggle "+_file);
-				fail = true;
-			}
-		}
-		
-		AssetDatabase.Refresh();
-		
-		if (fail)
-		{
-			PlayMakerPresenceCheck.ResetPrefs();
-			Debug.Log("Failed to toggle PlayMaker Scripts.");
-		}else if (enabled)
-		{
-			Debug.Log("Enabled PlayMaker Scripts.");
-		}else
-		{
-			PlayMakerPresenceCheck.ResetPrefs();
-			Debug.Log("Disabled PlayMaker Scripts.");
-		}
-	}
+//				//GA_Tracking.SendEvent("Added:GA_Tracker");
+//			} else {
+//				GA.LogWarning ("That object already contains a GA_Tracker component.");
+//			}
+//		} else {
+//			GA.LogWarning ("You must select the gameobject you want to add the GA_Tracker component to.");
+//		}
+//	}
+//	
+//	[MenuItem ("Window/GameAnalytics/Open GA_Status Window", false, 300)]
+//	static void OpenGAStatus ()
+//	{
+//		GA_Status status = ScriptableObject.CreateInstance<GA_Status> ();
+//		status.Show ();
+//	}
+//	
+//	[MenuItem ("Window/GameAnalytics/PlayMaker/Toggle Scripts", false, 400)]
+//	static void TogglePlayMaker ()
+//	{
+//		bool enabled = false;
+//		bool fail = false;
+//		
+//		string searchText = "#if false";
+//		string replaceText = "#if true";
+//		
+//		string[] _files = new string[] {
+//			"/GameAnalytics/Plugins/Playmaker/SendBusinessEvent.cs",
+//			"/GameAnalytics/Plugins/Playmaker/SendDesignEvent.cs",
+//			"/GameAnalytics/Plugins/Playmaker/SendErrorEvent.cs",
+//			"/GameAnalytics/Plugins/Playmaker/SendUserEvent.cs",
+//			"/GameAnalytics/Plugins/Playmaker/Editor/SendUserEventActionEditor.cs",
+//			"/GameAnalytics/Plugins/Playmaker/QueueEndSubmit.cs",
+//			"/GameAnalytics/Plugins/Playmaker/QueueForceSubmit.cs",
+//			"/GameAnalytics/Plugins/Playmaker/ConvertFloatToLowestCurrencyUnit.cs",
+//			"/GameAnalytics/Plugins/Playmaker/SetCustomUserID.cs",
+//			"/GameAnalytics/Plugins/Playmaker/SetCustomArea.cs"
+//		};
+//		
+//		foreach(string _file in _files)
+//		{
+//			try {
+//				enabled = ReplaceInFile (Application.dataPath + _file, searchText, replaceText);
+//			} catch {
+//				Debug.Log("Failed to toggle "+_file);
+//				fail = true;
+//			}
+//		}
+//		
+//		AssetDatabase.Refresh();
+//		
+//		if (fail)
+//		{
+//			PlayMakerPresenceCheck.ResetPrefs();
+//			Debug.Log("Failed to toggle PlayMaker Scripts.");
+//		}else if (enabled)
+//		{
+//			Debug.Log("Enabled PlayMaker Scripts.");
+//		}else
+//		{
+//			PlayMakerPresenceCheck.ResetPrefs();
+//			Debug.Log("Disabled PlayMaker Scripts.");
+//		}
+//	}
 
 	[MenuItem ("Window/GameAnalytics/PlayMaker/Import Examples", false, 500)]
 	static void ImportPlayMakerDemo ()
