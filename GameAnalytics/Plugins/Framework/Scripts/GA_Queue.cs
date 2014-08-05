@@ -279,7 +279,7 @@ public static class GA_Queue
 				OnSuccess();
 
 			#if UNITY_EDITOR
-			GA_Tracking.EventSuccess(items);
+			//GA_Tracking.EventSuccess(items);
 			#endif
 
 			GA.SettingsGA.TotalMessagesSubmitted += items.Count;

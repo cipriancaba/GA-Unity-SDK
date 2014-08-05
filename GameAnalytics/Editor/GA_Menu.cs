@@ -37,7 +37,7 @@ public class GA_Menu : MonoBehaviour
 			go.AddComponent<GA_SystemTracker>();
 			Selection.activeObject = go;
 
-			GA_Tracking.SendEvent("Added:GA_SystemTracker");
+			//GA_Tracking.SendEvent("Added:GA_SystemTracker");
 		} else {
 			GA.LogWarning ("A GA_SystemTracker already exists in this scene - you should never have more than one per scene!");
 		}
@@ -51,7 +51,7 @@ public class GA_Menu : MonoBehaviour
 		go.AddComponent<GA_HeatMapDataFilter>();
 		Selection.activeObject = go;
 
-		GA_Tracking.SendEvent("Added:GA_HeatMap");
+		//GA_Tracking.SendEvent("Added:GA_HeatMap");
 	}
 	
 	[MenuItem ("Window/GameAnalytics/Add GA_Tracker to Object", false, 202)]
@@ -61,7 +61,7 @@ public class GA_Menu : MonoBehaviour
 			if (Selection.activeGameObject.GetComponent<GA_Tracker> () == null) {
 				Selection.activeGameObject.AddComponent<GA_Tracker> ();
 
-				GA_Tracking.SendEvent("Added:GA_Tracker");
+				//GA_Tracking.SendEvent("Added:GA_Tracker");
 			} else {
 				GA.LogWarning ("That object already contains a GA_Tracker component.");
 			}

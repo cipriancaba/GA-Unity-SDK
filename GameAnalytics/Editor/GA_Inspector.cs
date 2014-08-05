@@ -812,7 +812,7 @@ public class GA_Inspector : Editor
 				ga.GameKey = EditorGUILayout.TextField("", ga.GameKey);
 				if (ga.GameKey != tmpGameKey && ga.GameKey.Length > 0 && ga.SecretKey.Length > 0)
 				{
-					GA_Tracking.SendEvent("KeysInput");
+					//GA_Tracking.SendEvent("KeysInput");
 				}
 				GUILayout.EndHorizontal();
 				
@@ -823,7 +823,7 @@ public class GA_Inspector : Editor
 				ga.SecretKey = EditorGUILayout.TextField("", ga.SecretKey);
 				if (ga.SecretKey != tmpSecretKey && ga.GameKey.Length > 0 && ga.SecretKey.Length > 0)
 				{
-					GA_Tracking.SendEvent("KeysInput");
+					//GA_Tracking.SendEvent("KeysInput");
 				}
 				GUILayout.EndHorizontal();
 				
@@ -1373,7 +1373,7 @@ public class GA_Inspector : Editor
 
 					SetLoginStatus ("Received Game Key and Secret Key. Ready to send events!", ga);
 
-					GA_Tracking.SendEvent("KeysInput");
+					//GA_Tracking.SendEvent("KeysInput");
 				}
 			}
 			else
