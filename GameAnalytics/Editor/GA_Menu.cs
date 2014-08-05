@@ -54,30 +54,29 @@ public class GA_Menu : MonoBehaviour
 		//GA_Tracking.SendEvent("Added:GA_HeatMap");
 	}
 	
-	//[MenuItem ("Window/GameAnalytics/Add GA_Tracker to Object", false, 202)]
-//	static void AddGATracker ()
-//	{
-//		if (Selection.activeGameObject != null) {
-//			if (Selection.activeGameObject.GetComponent<GA_Tracker> () == null) {
-//				Selection.activeGameObject.AddComponent<GA_Tracker> ();//
-
-//				//GA_Tracking.SendEvent("Added:GA_Tracker");
-//			} else {
-//				GA.LogWarning ("That object already contains a GA_Tracker component.");
-//			}
-//		} else {
-//			GA.LogWarning ("You must select the gameobject you want to add the GA_Tracker component to.");
-//		}
-//	}
-//	
-//	[MenuItem ("Window/GameAnalytics/Open GA_Status Window", false, 300)]
-//	static void OpenGAStatus ()
-//	{
-//		GA_Status status = ScriptableObject.CreateInstance<GA_Status> ();
-//		status.Show ();
-//	}
-//	
-//	[MenuItem ("Window/GameAnalytics/PlayMaker/Toggle Scripts", false, 400)]
+	MenuItem ("Window/GameAnalytics/Add GA_Tracker to Object", false, 202)]
+	static void AddGATracker ()
+	{
+		if (Selection.activeGameObject != null) {
+			if (Selection.activeGameObject.GetComponent<GA_Tracker> () == null) {
+				Selection.activeGameObject.AddComponent<GA_Tracker> ();
+				//				//GA_Tracking.SendEvent("Added:GA_Tracker");
+			} else {
+				GA.LogWarning ("That object already contains a GA_Tracker component.");
+			}
+		} else {
+			GA.LogWarning ("You must select the gameobject you want to add the GA_Tracker component to.");
+		}
+	}
+	
+	[MenuItem ("Window/GameAnalytics/Open GA_Status Window", false, 300)]
+	static void OpenGAStatus ()
+	{
+		GA_Status status = ScriptableObject.CreateInstance<GA_Status> ();
+		status.Show ();
+	}
+	
+	//[MenuItem ("Window/GameAnalytics/PlayMaker/Toggle Scripts", false, 400)]
 //	static void TogglePlayMaker ()
 //	{
 //		bool enabled = false;
@@ -125,13 +124,13 @@ public class GA_Menu : MonoBehaviour
 //		}
 //	}
 
-	[MenuItem ("Window/GameAnalytics/PlayMaker/Import Examples", false, 500)]
-	static void ImportPlayMakerDemo ()
-	{
-		AssetDatabase.ImportPackage(PlayMakerPresenceCheck.PlayMakerDemoPackageFile,true);
-		
-		AssetDatabase.Refresh();
-	}
+//	[MenuItem ("Window/GameAnalytics/PlayMaker/Import Examples", false, 500)]
+//	static void ImportPlayMakerDemo ()
+//	{
+//		AssetDatabase.ImportPackage(PlayMakerPresenceCheck.PlayMakerDemoPackageFile,true);
+//		
+//		AssetDatabase.Refresh();
+//	}
 	
 	public static bool ReplaceInFile (string filePath, string searchText, string replaceText)
 	{
