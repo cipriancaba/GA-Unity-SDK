@@ -134,15 +134,14 @@ public static class GA_Queue
 	{
 		while (!_endsubmit)
 		{
-
-			while (GA.SettingsGA.CustomUserID && GA.API.GenericInfo.UserID == string.Empty)
+			while (GA.SettingsGA.CustomUserID && GA.API.GenericInfo.UserID == string.Empty && !_endsubmit)
 			{
 				GA.LogWarning("GameAnalytics: User ID not set. No data will be sent until Custom User ID is set.");
 				yield return new WaitForSeconds(10f);
 			}
 			
 			//If we're still submitting data then wait half a second and try again
-			while (_submittingData)
+			while (_submittingData && !_endsubmit)
 			{
 				yield return new WaitForSeconds(0.5f);
 			}
