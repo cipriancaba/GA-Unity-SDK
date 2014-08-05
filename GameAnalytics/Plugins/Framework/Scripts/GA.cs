@@ -196,20 +196,20 @@ public class GA {
 	
 	public static void HierarchyWindowCallback (int instanceID, Rect selectionRect)
 	{
-		GameObject go = (GameObject)EditorUtility.InstanceIDToObject(instanceID);
-		if (go != null && (go.GetComponent<GA_Tracker>() != null || go.GetComponent<GA_SystemTracker>() != null || go.GetComponent<GA_HeatMapDataFilter>() != null || go.GetComponent<GA_AdSupport>() != null))
-		{
-			float addX = 0;
-			if (go.GetComponent("PlayMakerFSM") != null)
-				addX = selectionRect.height + 2;
-			
-			if (GA.SettingsGA.Logo == null)
-			{
-				GA.SettingsGA.Logo = (Texture2D)Resources.LoadAssetAtPath("Assets/Gizmos/gaLogo.png", typeof(Texture2D));
-			}
-			
-			Graphics.DrawTexture(new Rect(GUILayoutUtility.GetLastRect().width - selectionRect.height - 5 - addX, selectionRect.y, selectionRect.height, selectionRect.height), GA.SettingsGA.Logo);
-		}
+		//GameObject go = (GameObject)EditorUtility.InstanceIDToObject(instanceID);
+		//if (go != null && (go.GetComponent<GA_Tracker>() != null || go.GetComponent<GA_SystemTracker>() != null || go.GetComponent<GA_HeatMapDataFilter>() != null || go.GetComponent<GA_AdSupport>() != null))
+		//{
+		//	float addX = 0;
+		//	if (go.GetComponent("PlayMakerFSM") != null)
+		//		addX = selectionRect.height + 2;
+		//	
+		//	if (GA.SettingsGA.Logo == null)
+		//	{
+		//		GA.SettingsGA.Logo = (Texture2D)Resources.LoadAssetAtPath("Assets/Gizmos/gaLogo.png", typeof(Texture2D));
+		//	}
+		//	
+		//	Graphics.DrawTexture(new Rect(GUILayoutUtility.GetLastRect().width - selectionRect.height - 5 - addX, selectionRect.y, selectionRect.height, selectionRect.height), GA.SettingsGA.Logo);
+		//}
 	}
 	
 	#endif
